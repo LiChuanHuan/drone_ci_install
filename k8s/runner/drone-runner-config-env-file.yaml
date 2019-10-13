@@ -9,6 +9,6 @@ data:
   drone.rpc.proto: // {DRONE_SERVER_PROTO}
   drone.runner.capacity: //{DRONE_RUNNER_CAPACITY}
   drone.runner.name: //{DRONE_RUNNER_NAME}
-  agent.debug: "true"
-  agent.debug.pretty: "true"
-  agent.healthcheck: "true"
+  runner.debug: "true"
+  runner.debug.pretty: "true"
+  runner.healthcheck: "true"
