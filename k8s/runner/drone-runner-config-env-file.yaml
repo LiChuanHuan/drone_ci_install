@@ -9,3 +9,5 @@ data:
   drone.rpc.proto: // {DRONE_SERVER_PROTO}
   drone.runner.capacity: //{DRONE_RUNNER_CAPACITY}
   drone.runner.name: //{DRONE_RUNNER_NAME}
+  runner.debug: "true"
+  runner.debug.pretty: "true"

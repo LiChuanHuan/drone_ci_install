@@ -46,6 +46,16 @@ spec:
                 configMapKeyRef:
                   name: drone-runner-config
                   key: drone.runner.name
+            - name: DRONE_LOGS_DEBUG
+              valueFrom:
+                configMapKeyRef:
+                  name: drone-runner-config
+                  key: runner.debug
+            - name: DRONE_LOGS_PRETTY
+              valueFrom:
+                configMapKeyRef:
+                  name: drone-runner-config
+                  key: runner.debug.pretty
           volumeMounts:
             - name: docker-socket
               mountPath: /var/run/docker.sock

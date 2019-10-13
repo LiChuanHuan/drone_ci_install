@@ -61,6 +61,16 @@ spec:
                 configMapKeyRef:
                   name: drone-provider-config
                   key: drone.server.proto
+            - name: DRONE_LOGS_DEBUG
+              valueFrom:
+                configMapKeyRef:
+                  name: drone-provider-config
+                  key: drone.server.debug
+            - name: DRONE_LOGS_PRETTY
+              valueFrom:
+                configMapKeyRef:
+                  name: drone-provider-config
+                  key: drone.server.debug
           volumeMounts:
             - name: drone-provider-pvc
               mountPath: "/data"

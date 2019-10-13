@@ -12,3 +12,4 @@ data:
   drone.rpc.secret: // {DRONE_RPC_SECRET}
   drone.server.host: // {DRONE_SERVER_HOST}
   drone.server.proto: // {DRONE_SERVER_PROTO}
+  drone.server.debug: "true"
