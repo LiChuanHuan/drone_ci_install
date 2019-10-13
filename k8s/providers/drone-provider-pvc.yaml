@@ -2,6 +2,7 @@ kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
   name: drone-provider-pvc
+  namespace: drone
 spec:
   storageClassName: "microk8s-hostpath"
   accessModes:
