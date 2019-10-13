@@ -1,0 +1,55 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: drone-runner-deployment
+  namespace: drone
+  labels:
+    app: drone-runner
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: drone-runner
+  template:
+    metadata:
+      labels:
+        app: drone-runner
+    spec:
+      containers:
+        - name: drone-runner
+          image: drone/agent:1
+          ports:
+            - containerPort: 3000
+          env:
+            - name: DRONE_RPC_PROTO
+              valueFrom:
+                configMapKeyRef:
+                  name: drone-runner-config
+                  key: drone.rpc.proto
+            - name: DRONE_RPC_HOST
+              valueFrom:
+                configMapKeyRef:
+                  name: drone-runner-config
+                  key: drone.rpc.host
+            - name: DRONE_RPC_SECRET
+              valueFrom:
+                configMapKeyRef:
+                  name: drone-runner-config
+                  key: drone.rpc.secret
+            - name: DRONE_RUNNER_CAPACITY
+              valueFrom:
+                configMapKeyRef:
+                  name: drone-runner-config
+                  key: drone.runner.capacity
+            - name: DRONE_RUNNER_NAME
+              valueFrom:
+                configMapKeyRef:
+                  name: drone-runner-config
+                  key: drone.runner.name
+          volumeMounts:
+            - name: drone-provider-pvc
+              mountPath: "/data"
+      volumes:
+        - name: drone-provider-pvc
+          persistentVolumeClaim:
+            claimName: drone-provider-pvc

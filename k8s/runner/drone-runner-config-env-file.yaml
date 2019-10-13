@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: drone-runner-config
+  namespace: drone
+data:
+  drone.rpc.secret: // {DRONE_RPC_SECRET}
+  drone.rpc.host: // {DRONE_SERVER_HOST}
+  drone.rpc.proto: // {DRONE_SERVER_PROTO}
+  drone.runner.capacity: //{DRONE_RUNNER_CAPACITY}
+  drone.runner.name: //{DRONE_RUNNER_NAME}
+  agent.debug: "true"
+  agent.debug.pretty: "true"
+  agent.healthcheck: "true"
