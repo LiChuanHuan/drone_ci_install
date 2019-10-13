@@ -47,9 +47,9 @@ spec:
                   name: drone-runner-config
                   key: drone.runner.name
           volumeMounts:
-            - name: drone-provider-pvc
-              mountPath: "/data"
+            - name: docker-socket
+              mountPath: /var/run/docker.sock
       volumes:
-        - name: drone-provider-pvc
-          persistentVolumeClaim:
-            claimName: drone-provider-pvc
+        - name: docker-socket
+          hostPath:
+            path: /var/run/docker.sock
