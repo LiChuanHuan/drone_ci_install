@@ -20,12 +20,13 @@ spec:
           image: drone/drone:1
           ports:
             - containerPort: 80
+            - containerPort: 443
           env:
-            - name: DRONE_AGENTS_ENABLED
+            - name: DRONE_RUNNER_CAPACITY
               valueFrom:
                 configMapKeyRef:
                   name: drone-provider-config
-                  key: drone.agents.enabled
+                  key: drone.runner.capacity
             - name: DRONE_GITHUB_SERVER
               valueFrom:
                 configMapKeyRef:
@@ -74,7 +75,12 @@ spec:
           volumeMounts:
             - name: drone-provider-pvc
               mountPath: "/data"
+            - name: docker-socket
+              mountPath: /var/run/docker.sock
       volumes:
         - name: drone-provider-pvc
           persistentVolumeClaim:
             claimName: drone-provider-pvc
+        - name: docker-socket
+          hostPath:
+            path: /var/run/docker.sock
