@@ -1,0 +1,60 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: drone-provider-deployment
+  namespace: drone
+  labels:
+    app: drone-provider
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: drone-provider
+  template:
+    metadata:
+      labels:
+        app: drone-provider
+    spec:
+      containers:
+        - name: drone-provider
+          image: drone/drone:1
+          ports:
+            - containerPort: 80
+          env:
+            - name: DRONE_GITHUB_CLIENT_ID
+              valueFrom:
+                configMapKeyRef:
+                  name: drone-provider-config
+                  key: drone.github.client.id
+            - name: DRONE_GITHUB_CLIENT_SECRET
+              valueFrom:
+                configMapKeyRef:
+                  name: drone-provider-config
+                  key: drone.github.client.secret
+            - name: DRONE_GIT_ALWAYS_AUTH
+              valueFrom:
+                configMapKeyRef:
+                  name: drone-provider-config
+                  key: drone.git.always.auth
+            - name: DRONE_RPC_SECRET
+              valueFrom:
+                configMapKeyRef:
+                  name: drone-provider-config
+                  key: drone.rpc.secret
+            - name: DRONE_SERVER_HOST
+              valueFrom:
+                configMapKeyRef:
+                  name: drone-provider-config
+                  key: drone.server.host
+            - name: DRONE_SERVER_PROTO
+              valueFrom:
+                configMapKeyRef:
+                  name: drone-provider-config
+                  key: drone.server.proto
+          volumeMounts:
+            - name: drone-provider-pvc
+              mountPath: "/data"
+      volumes:
+        - name: drone-provider-pvc
+          persistentVolumeClaim:
+            claimName: drone-provider-pvc

@@ -1,0 +1,11 @@
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: drone-provider-pvc
+spec:
+  storageClassName: "microk8s-hostpath"
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 50Mi

@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: drone-provider-config
+  namespace: drone
+data:
+  drone.github.client.id: //{DRONE_GITHUB_CLIENT_ID}
+  drone.github.client.secret: //{DRONE_GITHUB_CLIENT_SECRET}
+  drone.git.always.auth: // {DRONE_GIT_ALWAYS_AUTH}
+  drone.rpc.secret: // {DRONE_RPC_SECRET}
+  drone.server.host: // {DRONE_SERVER_HOST}
+  drone.server.proto: // {DRONE_SERVER_PROTO}
