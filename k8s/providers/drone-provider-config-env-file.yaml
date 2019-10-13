@@ -4,6 +4,8 @@ metadata:
   name: drone-provider-config
   namespace: drone
 data:
+  drone.agents.enabled: "true"
+  drone.github.server: https://github.com
   drone.github.client.id: //{DRONE_GITHUB_CLIENT_ID}
   drone.github.client.secret: //{DRONE_GITHUB_CLIENT_SECRET}
   drone.git.always.auth: // {DRONE_GIT_ALWAYS_AUTH}

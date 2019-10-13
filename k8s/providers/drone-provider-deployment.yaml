@@ -21,6 +21,16 @@ spec:
           ports:
             - containerPort: 80
           env:
+            - name: DRONE_AGENTS_ENABLED
+              valueFrom:
+                configMapKeyRef:
+                  name: drone-provider-config
+                  key: drone.agents.enabled
+            - name: DRONE_GITHUB_SERVER
+              valueFrom:
+                configMapKeyRef:
+                  name: drone-provider-config
+                  key: drone.github.server
             - name: DRONE_GITHUB_CLIENT_ID
               valueFrom:
                 configMapKeyRef:
